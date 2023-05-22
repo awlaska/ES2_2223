@@ -1,0 +1,6 @@
+﻿services:
+  es2_2023:
+    image: es2_2023
+    build:
+      context: .
+      dockerfile: Dockerfile
