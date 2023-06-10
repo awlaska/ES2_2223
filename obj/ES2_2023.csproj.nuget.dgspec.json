@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marti\\RiderProjects\\ES2_2023\\ES2_2023.csproj": {}
+    "C:\\Users\\sofia\\Documents\\_escola\\_este_ano\\2_2_5_ES2\\trabalho_pratico\\ES2_2223\\ES2_2023.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marti\\RiderProjects\\ES2_2023\\ES2_2023.csproj": {
+    "C:\\Users\\sofia\\Documents\\_escola\\_este_ano\\2_2_5_ES2\\trabalho_pratico\\ES2_2223\\ES2_2023.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marti\\RiderProjects\\ES2_2023\\ES2_2023.csproj",
+        "projectUniqueName": "C:\\Users\\sofia\\Documents\\_escola\\_este_ano\\2_2_5_ES2\\trabalho_pratico\\ES2_2223\\ES2_2023.csproj",
         "projectName": "ES2_2023",
-        "projectPath": "C:\\Users\\marti\\RiderProjects\\ES2_2023\\ES2_2023.csproj",
-        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marti\\RiderProjects\\ES2_2023\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\Documents\\_escola\\_este_ano\\2_2_5_ES2\\trabalho_pratico\\ES2_2223\\ES2_2023.csproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\Documents\\_escola\\_este_ano\\2_2_5_ES2\\trabalho_pratico\\ES2_2223\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\marti\\.dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
