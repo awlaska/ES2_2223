@@ -16,9 +16,9 @@ public partial class ES2DbContext : DbContext
     {
     }
 
-    public virtual DbSet<Author> Authors { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<Book> Books { get; set; }
+    public virtual DbSet<Experiencia> Experiencias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -31,44 +31,44 @@ public partial class ES2DbContext : DbContext
             .HasPostgresExtension("uuid-ossp")
             .HasPostgresExtension("topology", "postgis_topology");
 
-        modelBuilder.Entity<Author>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("authors_pkey");
 
-            entity.ToTable("authors");
+            entity.ToTable("users");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.BirthDate).HasColumnName("birth_date");
-            entity.Property(e => e.FirstName)
+            entity.Property(e => e.pr_hora).HasColumnName("pr_hora");
+            entity.Property(e => e.name)
                 .HasMaxLength(100)
-                .HasColumnName("first_name");
-            entity.Property(e => e.LastName)
+                .HasColumnName("name");
+            entity.Property(e => e.email)
                 .HasMaxLength(100)
-                .HasColumnName("last_name");
+                .HasColumnName("email");
         });
 
-        modelBuilder.Entity<Book>(entity =>
+        modelBuilder.Entity<Experiencia>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("books_pkey");
 
-            entity.ToTable("books");
+            entity.ToTable("experiencias");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.AuthorId).HasColumnName("author_id");
-            entity.Property(e => e.PublicationYear).HasColumnName("publication_year");
-            entity.Property(e => e.Status)
+            entity.Property(e => e.titulo).HasColumnName("Titulo");
+            entity.Property(e => e.ano_ini).HasColumnName("ano_ini");
+            entity.Property(e => e.ano_fim)
                 .HasMaxLength(20)
                 .HasColumnName("status");
-            entity.Property(e => e.Title)
+            entity.Property(e => e.empresa)
                 .HasMaxLength(255)
-                .HasColumnName("title");
+                .HasColumnName("Empresa");
 
-            entity.HasOne(d => d.Author).WithMany(p => p.Books)
-                .HasForeignKey(d => d.AuthorId)
+            entity.HasOne(d => d.User).WithMany(p => p.Experiencias)
+                .HasForeignKey(d => d.User)
                 .HasConstraintName("books_author_id_fkey");
         });
 
