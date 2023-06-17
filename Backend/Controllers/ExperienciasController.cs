@@ -23,7 +23,7 @@ namespace Backend.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<dynamic>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<dynamic>>> GetExperiencias()
         {
             if (_context.Experiencias == null)
             {
@@ -37,10 +37,9 @@ namespace Backend.Controllers
                     b.titulo,
                     b.empresa,
                     b.ano_ini,
-                    b.ano_fim,
                     User = new
                     {
-                        b.User!.Id,
+                        b.User.Id,
                         b.User.name,
                         b.User.email,
                         b.User.pais,
@@ -52,21 +51,21 @@ namespace Backend.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Experiencia>> GetBook(Guid id)
+        public async Task<ActionResult<Experiencia>> GetExperiencia(Guid id)
         {
             if (_context.Experiencias == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Experiencias.FindAsync(id);
+            var experiencia = await _context.Experiencias.FindAsync(id);
 
-            if (book == null)
+            if (experiencia == null)
             {
                 return NotFound();
             }
 
-            return book;
+            return experiencia;
         }
 
         // PUT: api/Books/5
@@ -87,7 +86,7 @@ namespace Backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!ExperienciaExists(id))
                 {
                     return NotFound();
                 }
@@ -107,37 +106,37 @@ namespace Backend.Controllers
         {
             if (_context.Experiencias == null)
             {
-                return Problem("Entity set 'ES2DbContext.Books'  is null.");
+                return Problem("Entity set 'ES2DbContext.Experiencias'  is null.");
             }
 
             _context.Experiencias.Add(experiencia);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBook", new { id = experiencia.Id }, experiencia);
+            return CreatedAtAction("GetExperiencia", new { id = experiencia.Id }, experiencia);
         }
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBook(Guid id)
+        public async Task<IActionResult> DeleteExperiencia(Guid id)
         {
             if (_context.Experiencias == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Experiencias.FindAsync(id);
-            if (book == null)
+            var experiencia = await _context.Experiencias.FindAsync(id);
+            if (experiencia == null)
             {
                 return NotFound();
             }
 
-            _context.Experiencias.Remove(book);
+            _context.Experiencias.Remove(experiencia);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool BookExists(Guid id)
+        private bool ExperienciaExists(Guid id)
         {
             return (_context.Experiencias?.Any(e => e.Id == id)).GetValueOrDefault();
         }

@@ -105,7 +105,7 @@ namespace Backend.Controllers
         {
             if (_context.Users == null)
             {
-                return Problem("Entity set 'ES2DbContext.Authors'  is null.");
+                return Problem("Entity set 'ES2DbContext.Users'  is null.");
             }
 
             _context.Users.Add(user);

@@ -10,40 +10,40 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update=".env.example">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker-compose.yml">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker\images\pg\Dockerfile">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker\images\pg\migrations\001-init.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker\images\pg\migrations\002-create-user-table.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker\images\pg\migrations\003-create-user_skill-table.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="docker\images\pg\migrations\004-seed-data.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-        <None Update="docker\images\pg\migrations\005-create-experiencia-table.sql">
+        <None Update=".env.example">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\006-create-skills-table.sql">
+        <None Update="docker-compose.yml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\Dockerfile">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\001-init.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\003-create-user-table.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\005-create-user_skill-table.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\002-create-experiencia-table.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\004-create-skills-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="docker\images\pg\migrations\007-create-talentos-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\008-create-categoria-table.sql">
+        <None Update="docker\images\pg\migrations\006-create-categoria-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\009-create-talento_skill-table.sql">
+        <None Update="docker\images\pg\migrations\008-create-talento_skill-table.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\009-seed-data.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

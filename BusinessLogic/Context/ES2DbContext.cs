@@ -33,9 +33,9 @@ public partial class ES2DbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("authors_pkey");
+            entity.HasKey(e => e.Id).HasName("user_pkey");
 
-            entity.ToTable("users");
+            entity.ToTable("user");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
@@ -51,9 +51,9 @@ public partial class ES2DbContext : DbContext
 
         modelBuilder.Entity<Experiencia>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("books_pkey");
+            entity.HasKey(e => e.Id).HasName("experiencia_pkey");
 
-            entity.ToTable("experiencias");
+            entity.ToTable("experiencia");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
@@ -66,10 +66,7 @@ public partial class ES2DbContext : DbContext
             entity.Property(e => e.empresa)
                 .HasMaxLength(255)
                 .HasColumnName("Empresa");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Experiencias)
-                .HasForeignKey(d => d.User)
-                .HasConstraintName("books_author_id_fkey");
+            
         });
 
         OnModelCreatingPartial(modelBuilder);
