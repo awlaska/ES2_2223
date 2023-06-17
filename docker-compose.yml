@@ -4,3 +4,16 @@
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - database
+
+  database:
+    container_name: is-db
+    build: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
