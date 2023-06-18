@@ -37,18 +37,23 @@ namespace Backend.Controllers
                     a.PrHora,
                     a.Name,
                     a.Email,
-                    Experiencia = a.Experiences.Select(b => new
+                    a.Country,
+                    Experiences = _context.Experiences
+                        .Where(e => e.Id == a.IdExperience)
+                    .Select(b => new
                     {
-                        b.Id,
-                        b.Title,
-                        b.AnoIni,
-                        b.AnoFim,
-                        Company = b.Companies.Select(c => new
+                    b.Id,
+                    b.Title,
+                    b.AnoIni,
+                    b.AnoFim,
+                    Companies = _context.Companies
+                        .Where(c => c.Id == b.IdCompany)
+                        .Select(c => new
                         {
                             c.Id,
                             c.Name
-                        })
-                            })
+                        }).ToList()
+                }).ToList()
                 }).ToListAsync();
         }
 

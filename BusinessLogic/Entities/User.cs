@@ -15,7 +15,9 @@ public partial class User
     
     public string Country { get; set; } = null!;
 
-    public float PrHora { get; set; }
+    public double PrHora { get; set; }
+    
+    public Guid IdExperience { get; set; }
 
     public virtual ICollection<Experience> Experiences { get; set; } = new List<Experience>();
 }

@@ -29,6 +29,7 @@
 
     <ItemGroup>
       <Compile Remove="Pages\Experience.razor.cs" />
+      <Compile Remove="Pages\Propostas.cshtml.cs" />
     </ItemGroup>
 
 </Project>

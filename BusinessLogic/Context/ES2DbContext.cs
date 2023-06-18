@@ -20,6 +20,10 @@ public partial class ES2DbContext : DbContext
 
     public virtual DbSet<Experience> Experiences { get; set; }
     
+    public virtual DbSet<Proposta> Propostas { get; set; }
+    
+    public virtual DbSet<Categoria> Categorias { get; set; }
+    
     public virtual DbSet<Company> Companies { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -49,6 +53,8 @@ public partial class ES2DbContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .HasColumnName("email");
+            entity.Property(e => e.IdExperience).HasColumnName("id_xp");
+            entity.Property(e => e.Country).HasColumnName("country");
         });
 
         modelBuilder.Entity<Company>(entity =>
@@ -56,6 +62,33 @@ public partial class ES2DbContext : DbContext
             entity.HasKey(e => e.Id).HasName("id");
 
             entity.ToTable("company");
+
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("uuid_generate_v4()")
+                .HasColumnName("id");
+            entity.Property(e => e.Name).HasColumnName("name");
+        });
+        
+        modelBuilder.Entity<Proposta>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("id");
+
+            entity.ToTable("proposta");
+
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("uuid_generate_v4()")
+                .HasColumnName("id");
+            entity.Property(e => e.IdCompany).HasColumnName("id_company");
+            entity.Property(e => e.IdUser).HasColumnName("id_user");
+            entity.Property(e => e.IdCategoria).HasColumnName("id_cat");
+            entity.Property(e => e.Descricao).HasColumnName("descricao");
+        });
+        
+        modelBuilder.Entity<Categoria>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("id");
+
+            entity.ToTable("categoria");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
