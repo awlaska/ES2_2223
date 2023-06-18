@@ -4,6 +4,11 @@ VALUES ('CompanyA'),
        ('CompanyB'),
        ('CompanyC');
 
+INSERT INTO roles (id,name)
+VALUES (0,'Admin'),
+       (1,'Manager'),
+       (2,'User');
+
 -- Insert initial data into the experience table
 INSERT INTO experience (id_company, title, ano_ini, ano_fim)
 VALUES ((SELECT id FROM company LIMIT 1 OFFSET 0), 'Gestor', 2020, 2020),
@@ -11,10 +16,10 @@ VALUES ((SELECT id FROM company LIMIT 1 OFFSET 0), 'Gestor', 2020, 2020),
        ((SELECT id FROM company LIMIT 1 OFFSET 0), 'Engenheiro', 2003, 2014);
 
 -- Insert initial data into the users table
-INSERT INTO users (name, email, password, country, pr_hora, id_xp)
-VALUES ('João Martins', 'joao.m@ipvc.pt', 'abc123', 'Portugal', 200.00, (SELECT id FROM experience LIMIT 1 OFFSET 0)),
-       ('Eunice Jordão', 'eunice@email.pt', '123abc', 'USA', 250.00, (SELECT id FROM experience LIMIT 1 OFFSET 1)),
-       ('Daniel Albuquerque', 'daniel@email.pt', 'b2d34', 'Brasil', 180.00, (SELECT id FROM experience LIMIT 1 OFFSET 2));
+INSERT INTO users (name, email, password, country, pr_hora, id_xp, role)
+VALUES ('João Martins', 'joao.m@ipvc.pt', '.2DXVNkNVuS3W', 'Portugal', 100.00, (SELECT id FROM experience LIMIT 1 OFFSET 0), 1),
+       ('Eunice Jordão', 'eunice@email.pt', '123abc', 'USA', 250.00, (SELECT id FROM experience LIMIT 1 OFFSET 1), 2),
+       ('Daniel Albuquerque', 'daniel@email.pt', 'b2d34', 'Brasil', 180.00, (SELECT id FROM experience LIMIT 1 OFFSET 2), 2);
 
 -- Insert initial data into the skills table
 INSERT INTO skills (name, area)

@@ -8,6 +8,8 @@ public partial class User
     public Guid Id { get; set; }
 
     public string Name { get; set; } = null!;
+    
+    public int Role { get; set; }
 
     public string Email { get; set; } = null!;
     

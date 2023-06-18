@@ -30,8 +30,8 @@ namespace Backend.Controllers
                 return NotFound();
             }
 
-            return await _context
-                .Users.Select(a => new
+            return await _context.Users
+                .Select(a => new
                 {
                     a.Id,
                     a.PrHora,

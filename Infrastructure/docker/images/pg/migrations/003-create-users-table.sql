@@ -5,5 +5,6 @@ CREATE TABLE public.users (
                               id_xp       UUID,
                               country     VARCHAR(250) NOT NULL,
                               email       VARCHAR(250) UNIQUE NOT NULL,
-                              pr_hora     FLOAT NOT NULL
+                              pr_hora     FLOAT,
+                              role        Int not null 
 );

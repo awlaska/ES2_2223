@@ -22,6 +22,13 @@ builder.Services.AddServerSideBlazor();
 builder.Services
     .AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<RoleService>();
+builder.Services.AddScoped<HttpClient>(s =>
+{
+    var navigationManager = s.GetRequiredService<NavigationManager>();
+    return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
+});
+
 
 var app = builder.Build();
 

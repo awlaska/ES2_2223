@@ -53,6 +53,7 @@ namespace BusinessLogic.Context
                     .HasDefaultValueSql("uuid_generate_v4()")
                     .HasColumnName("id");
                 entity.Property(e => e.PrHora).HasColumnName("pr_hora");
+                entity.Property(e => e.Role).HasColumnName("role");
                 entity.Property(e => e.Password).HasColumnName("password");
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)

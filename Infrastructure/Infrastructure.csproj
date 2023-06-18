@@ -55,6 +55,11 @@
         <None Update=".env">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Update=".env">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Remove="docker\images\pg\migrations\011-create-admin-table.sql" />
+        <None Remove="docker\images\pg\migrations\012-create-manager-table.sql" />
     </ItemGroup>
 
 </Project>
