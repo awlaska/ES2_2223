@@ -1,0 +1,50 @@
+@page "/experience"
+@using System.Net.Http
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using System.Net.Http.Json
+
+<h3>Experience List</h3>
+
+@if (experiences == null)
+{
+    <p>Loading...</p>
+}
+else if (experiences.Length == 0)
+{
+    <p>No experiences found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var experience in experiences)
+        {
+            <li>@experience.title - @experience.company (@experience.anoIni - @experience.anoFim)</li>
+        }
+    </ul>
+}
+
+@code {
+    private ExperienceItem[]? experiences;
+    private HttpClient httpClient;
+
+    public Experience()
+    {
+    // Initialize HttpClient in the constructor
+        httpClient = new HttpClient();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        experiences = await httpClient.GetFromJsonAsync<ExperienceItem[]>("http://localhost:5052/api/Experiencias");
+    }
+
+    public partial class ExperienceItem
+    {
+        public string id { get; set; }
+        public string title { get; set; }
+        public string company { get; set; }
+        public int anoFim { get; set; }
+        public int anoIni { get; set; }
+    }
+}

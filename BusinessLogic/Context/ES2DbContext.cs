@@ -18,7 +18,7 @@ public partial class ES2DbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<Experiencia> Experiencias { get; set; }
+    public virtual DbSet<Experience> Experiencias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -33,39 +33,39 @@ public partial class ES2DbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("user_pkey");
+            entity.HasKey(e => e.Id).HasName("id");
 
-            entity.ToTable("user");
+            entity.ToTable("users");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.pr_hora).HasColumnName("pr_hora");
-            entity.Property(e => e.name)
+            entity.Property(e => e.PrHora).HasColumnName("pr_hora");
+            entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .HasColumnName("name");
-            entity.Property(e => e.email)
+            entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .HasColumnName("email");
         });
 
-        modelBuilder.Entity<Experiencia>(entity =>
+        modelBuilder.Entity<Experience>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("experiencia_pkey");
+            entity.HasKey(e => e.Id).HasName("id");
 
-            entity.ToTable("experiencia");
+            entity.ToTable("experience");
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.Titulo).HasColumnName("Titulo");
+            entity.Property(e => e.Title).HasColumnName("title");
             entity.Property(e => e.AnoIni).HasColumnName("ano_ini");
             entity.Property(e => e.AnoFim)
                 .HasMaxLength(20)
-                .HasColumnName("status");
-            entity.Property(e => e.Empresa)
+                .HasColumnName("ano_fim");
+            entity.Property(e => e.Company)
                 .HasMaxLength(255)
-                .HasColumnName("Empresa");
+                .HasColumnName("company");
             
         });
 

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace BusinessLogic.Entities;
 
-public partial class Experiencia
+public partial class Experience
 {
     public Guid Id { get; set; }
 
-    public string Empresa { get; set; } = null!;
+    public string Company { get; set; } = null!;
     
-    public string Titulo { get; set; } = null!;
+    public string Title { get; set; } = null!;
 
     public int AnoIni { get; set; }
 

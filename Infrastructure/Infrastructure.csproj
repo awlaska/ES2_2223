@@ -22,13 +22,13 @@
         <None Update="docker\images\pg\migrations\001-init.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\003-create-user-table.sql">
+        <None Update="docker\images\pg\migrations\003-create-users-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="docker\images\pg\migrations\005-create-user_skill-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\002-create-experiencia-table.sql">
+        <None Update="docker\images\pg\migrations\002-create-experience-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="docker\images\pg\migrations\004-create-skills-table.sql">

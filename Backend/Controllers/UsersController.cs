@@ -34,16 +34,16 @@ namespace Backend.Controllers
                 .Users.Select(a => new
                 {
                     a.Id,
-                    a.pr_hora,
-                    a.name,
-                    a.email,
-                    Experiencia = a.Experiencias.Select(b => new
+                    a.PrHora,
+                    a.Name,
+                    a.Email,
+                    Experiencia = a.Experiences.Select(b => new
                     {
                         b.Id,
-                        empresa = b.Empresa,
-                        titulo = b.Titulo,
-                        ano_ini = b.AnoIni,
-                        ano_fim = b.AnoFim
+                        b.Company,
+                        b.Title,
+                        b.AnoIni,
+                        b.AnoFim
                     })
                 }).ToListAsync();
         }

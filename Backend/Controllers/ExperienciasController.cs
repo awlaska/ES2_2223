@@ -34,17 +34,17 @@ namespace Backend.Controllers
                 .Experiencias.Select(b => new
                 {
                     b.Id,
-                    titulo = b.Titulo,
-                    empresa = b.Empresa,
-                    ano_ini = b.AnoIni,
-                    ano_fim = b.AnoFim
+                    b.Title,
+                    b.Company,
+                    b.AnoIni,
+                    b.AnoFim
                 })
                 .ToListAsync();
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Experiencia>> GetExperiencia(Guid id)
+        public async Task<ActionResult<Experience>> GetExperiencia(Guid id)
         {
             if (_context.Experiencias == null)
             {
@@ -64,14 +64,14 @@ namespace Backend.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(Guid id, Experiencia experiencia)
+        public async Task<IActionResult> PutBook(Guid id, Experience experience)
         {
-            if (id != experiencia.Id)
+            if (id != experience.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(experiencia).State = EntityState.Modified;
+            _context.Entry(experience).State = EntityState.Modified;
 
             try
             {
@@ -95,17 +95,17 @@ namespace Backend.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Experiencia>> PostBook(Experiencia experiencia)
+        public async Task<ActionResult<Experience>> PostBook(Experience experience)
         {
             if (_context.Experiencias == null)
             {
                 return Problem("Entity set 'ES2DbContext.Experiencias'  is null.");
             }
 
-            _context.Experiencias.Add(experiencia);
+            _context.Experiencias.Add(experience);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetExperiencia", new { id = experiencia.Id }, experiencia);
+            return CreatedAtAction("GetExperiencia", new { id = experience.Id }, experience);
         }
 
         // DELETE: api/Books/5

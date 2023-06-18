@@ -1,4 +1,4 @@
-CREATE TABLE user_skill (
+CREATE TABLE public.user_skill (
         id_user         uuid,
         id_skill        uuid,
         PRIMARY KEY (id_user, id_skill),

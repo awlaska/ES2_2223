@@ -1,4 +1,4 @@
-CREATE TABLE talento_skill (
+CREATE TABLE public.talento_skill (
         id_skill              uuid,
         id_talento            uuid,
         PRIMARY Key (id_talento, id_skill),
