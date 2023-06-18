@@ -9,18 +9,18 @@ This structure can be used for the project assignment in Software Engineering II
 
 * Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * There are 2 alternatives:
-    * Compile and run the Infrastructure project
+  * Compile and run the Infrastructure project 
 ```
 cd Infrastructure
 dotnet build
 dotnet run
 ```
-* Run docker compose commands manually using the following set of commands in the root folder of the infrastructure project:
+  * Run docker compose commands manually using the following set of commands in the root folder of the infrastructure project:
 ```
 docker-compose build
 docker-compose up
 ```
-* ***Note:*** you can use the **-d** flag to run the docker containers in background
+  * ***Note:*** you can use the **-d** flag to run the docker containers in background
 ```
 docker-compose up -d
 ```
@@ -44,4 +44,4 @@ This is a volume to store and keep the database data intact, even if you stop th
 
 ___
 #### _Informatics Engineering @ipvc/estg, 2022-2023_ ####
-###### _Professors: LuÃ­s TeÃ³filo_ ######
+###### _Professors: Luís Teófilo_ ######
