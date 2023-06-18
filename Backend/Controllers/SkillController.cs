@@ -35,20 +35,7 @@ namespace Backend.Controllers
                 {
                     b.Id,
                     b.Name,
-                    b.Area,
-                    User_Skill = _context.UserSkills
-                        .Where(c => c.IdSkill == b.Id)
-                        .Select(c => new
-                        {
-                            c.AnoXp,
-                            Users = _context.Users
-                            .Where(u => u.Id == c.IdUser)
-                            .Select(u => new
-                            {
-                            u.Id,
-                            u.Name
-                            }).ToList(),
-                        }).ToList()
+                    b.Area
                 })
                 .ToListAsync();
 
@@ -76,7 +63,7 @@ namespace Backend.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(Guid id, Skill skill)
+        public async Task<IActionResult> PutSkill(Guid id, Skill skill)
         {
             if (id != skill.Id)
             {

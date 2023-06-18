@@ -23,6 +23,10 @@ namespace BusinessLogic.Context
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<User_Skill> UserSkills { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        
+        public virtual DbSet<Talento> Talentos { get; set; }
+        
+        public virtual DbSet<Talento_Skill> TalentoSkills { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -84,24 +88,39 @@ namespace BusinessLogic.Context
                 entity.Property(e => e.Name).HasColumnName("name");
                 entity.Property(e => e.Area).HasColumnName("area");
             });
+            
+            modelBuilder.Entity<Talento>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("id");
+
+                entity.ToTable("talentos");
+
+                entity.Property(e => e.Id)
+                    .HasDefaultValueSql("uuid_generate_v4()")
+                    .HasColumnName("id");
+                entity.Property(e => e.Name).HasColumnName("name");
+                entity.Property(e => e.IdCategoria).HasColumnName("id_categoria");
+            });
 
             modelBuilder.Entity<User_Skill>(entity =>
             {
                 entity.ToTable("user_skill");
 
-                entity.HasKey(e => new { e.IdUser, e.IdSkill });
-
-                entity.HasOne(e => e.User)
-                    .WithMany()
-                    .HasForeignKey(e => e.IdUser);
-
-                entity.HasOne(e => e.Skill)
-                    .WithMany()
-                    .HasForeignKey(e => e.IdSkill);
+                entity.HasKey(e => e.Id).HasName("id");
 
                 entity.Property(e => e.AnoXp).HasColumnName("anos_xp");
                 entity.Property(e => e.IdSkill).HasColumnName("id_skill");
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
+            });
+            
+            modelBuilder.Entity<Talento_Skill>(entity =>
+            {
+                entity.ToTable("talento_skill");
+
+                entity.HasKey(e => e.Id).HasName("id");
+
+                entity.Property(e => e.IdSkill).HasColumnName("id_skill");
+                entity.Property(e => e.IdTalento).HasColumnName("id_talento");
             });
 
             modelBuilder.Entity<Proposta>(entity =>

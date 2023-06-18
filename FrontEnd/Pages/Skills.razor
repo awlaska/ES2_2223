@@ -1,0 +1,77 @@
+@page "/skills"
+@using System.Net.Http
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using System.Net.Http.Json
+@using System.Net
+
+<h3>Experience List</h3>
+
+@if (experiences == null)
+{
+    <p>Loading...</p>
+}
+else if (experiences.Length == 0)
+{
+    <p>No experiences found.</p>
+}
+else
+{
+    <ul>
+        <li>Nome - Area</li>
+        @foreach (var experience in experiences)
+        {
+            <li>@experience.Name - @experience.Area
+                <button id=@experience.Id class="btn btn-danger btn-sm" @onclick="() => ButtonClick(experience.Id)">X</button>
+            </li>
+        }
+    </ul>
+    <button class="btn btn-primary"><a href="adicionar">Adicionar Skill</a></button>
+}
+
+@code {
+    private SkillItem[]? experiences;
+    private HttpClient httpClient;
+
+    public Skills()
+    {
+    // Initialize HttpClient in the constructor
+        httpClient = new HttpClient();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        experiences = await httpClient.GetFromJsonAsync<SkillItem[]>("http://localhost:5052/api/Skills");
+    }
+
+    public class SkillItem
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; } = null!;
+    
+        public string Area { get; set; } = null!;
+    }
+    
+    protected async Task ButtonClick(Guid id)
+    {
+        HttpResponseMessage response = await httpClient.DeleteAsync($"http://localhost:5052/api/Skills/{id}");
+
+        if (response.IsSuccessStatusCode)
+        {
+    // Remove the deleted experience from the local collection
+            experiences = experiences.Where(e => e.Id != id).ToArray();
+        }
+        else if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+    // Handle not found error
+            Console.WriteLine("Experience not found.");
+        }
+        else
+        {
+    // Handle other errors
+            Console.WriteLine("An error occurred while deleting the experience.");
+        }
+    }
+
+}

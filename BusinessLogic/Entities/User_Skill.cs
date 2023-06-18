@@ -2,6 +2,7 @@ namespace BusinessLogic.Entities;
 
 public class User_Skill
 {
+    public Guid Id { get; set; }
     public int AnoXp { get; set; }
     
     public Guid IdUser { get; set; }

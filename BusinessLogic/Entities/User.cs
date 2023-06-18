@@ -20,4 +20,6 @@ public partial class User
     public Guid IdExperience { get; set; }
 
     public virtual ICollection<Experience> Experiences { get; set; } = new List<Experience>();
+    
+    public virtual ICollection<Talento> Talentos { get; set; } = new List<Talento>();
 }

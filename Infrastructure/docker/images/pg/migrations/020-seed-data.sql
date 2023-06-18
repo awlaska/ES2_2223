@@ -11,9 +11,9 @@ VALUES ((SELECT id FROM company LIMIT 1 OFFSET 0), 'Gestor', 2020, 2020),
 
 -- Insert initial data into the books table                                                                                                         
 INSERT INTO users (name, email, password, country, pr_hora, id_xp)
-VALUES ('Dom Casmurro', 'msadasda','abc123' , 'portugal',200.00, (SELECT id FROM experience LIMIT 1 OFFSET 0)),
-       ('The Hour of the Star', 'asdasdasd', '123abc' , 'usa',250.00, (SELECT id FROM experience LIMIT 1 OFFSET 1)),
-       ('Dom Andre', 'ida','b2d34' , 'brasil',180.00, (SELECT id FROM experience LIMIT 1 OFFSET 2));
+VALUES ('João Martins', 'joao.m@ipvc.pt','abc123' , 'Portugal',200.00, (SELECT id FROM experience LIMIT 1 OFFSET 0)),
+       ('Eunice Jordão', 'eunice@email.pt', '123abc' , 'USA',250.00, (SELECT id FROM experience LIMIT 1 OFFSET 1)),
+       ('Daniel Albuquerque', 'daniel@email.pt','b2d34' , 'Brasil',180.00, (SELECT id FROM experience LIMIT 1 OFFSET 2));
 
 INSERT INTO skills (name, area)
 VALUES ('Programing C#', 'Engenheiro'),

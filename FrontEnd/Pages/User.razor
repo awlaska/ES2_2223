@@ -22,7 +22,14 @@ else
             <p><b>Nome: </b>@experience.Name</p>
             <p><b>Country: </b>@experience.Country</p>
             <p><b>Email: </b>@experience.Email</p>
-            <p><b>Ganho mensal: </b>@(experience.PrHora * 176.00)€ </p>            
+            <p><b>Ganho mensal: </b>@(experience.PrHora * 176.00)€ </p>
+            <h5>Skills</h5>  
+            <ul>
+            @foreach (var talento in experience.Talentos)
+            {
+                <li>@talento.Name</li>
+            }
+            </ul>
         }
 }
 
@@ -42,9 +49,21 @@ else
     public partial class UserItem
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; } = null!;
+
         public string Email { get; set; } = null!;
+
         public string Country { get; set; } = null!;
+
         public double PrHora { get; set; }
+
+        public virtual ICollection<Talento> Talentos { get; set; } = new List<Talento>();
     }
+    
+    public partial class Talento
+    {
+        public string Name { get; set; } = null!;
+    }
+
 }
