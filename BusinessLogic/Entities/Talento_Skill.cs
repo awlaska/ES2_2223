@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace BusinessLogic.Entities;
 
-public class User_Skill
+public partial class Talento_Skill
 {
     public Guid Id { get; set; }
-    public int AnoXp { get; set; }
-    
-    public Guid IdUser { get; set; }
     
     public Guid IdSkill { get; set; }
-    
-    public virtual User? User { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public Guid IdTalento { get; set; }
     
     public virtual Skill? Skill { get; set; }
-
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    
+    public virtual Talento? Talento { get; set; }
+    public virtual ICollection<Talento> Talentos { get; set; } = new List<Talento>();
     
     public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
 }

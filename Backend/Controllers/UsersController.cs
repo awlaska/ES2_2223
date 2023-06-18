@@ -53,7 +53,7 @@ namespace Backend.Controllers
                             c.Id,
                             c.Name
                         }).ToList()
-                }).ToList()
+                    }).ToList()
                 }).ToListAsync();
         }
 
@@ -75,23 +75,25 @@ namespace Backend.Controllers
                     a.Name,
                     a.Email,
                     a.Country,
-                    Experiences = _context.Experiences
-                        .Where(e => e.Id == a.IdExperience)
-                        .Select(b => new
+                    User_Skill = _context.UserSkills
+                        .Where(c => c.IdUser == a.Id)
+                        .Select(c => new
                         {
-                            b.Id,
-                            b.Title,
-                            b.AnoIni,
-                            b.AnoFim,
-                            Companies = _context.Companies
-                                .Where(c => c.Id == b.IdCompany)
-                                .Select(c => new
+                            c.Id,
+                            c.AnoXp,
+                            c.IdSkill,
+                            c.IdUser,
+                            Skill = _context.Skills
+                                .Where(u => u.Id == c.IdSkill)
+                                .Select(u => new
                                 {
-                                    c.Id,
-                                    c.Name
+                                    u.Id,
+                                    u.Name,
+                                    u.Area
                                 }).ToList()
                         }).ToList()
                 }).ToListAsync();
+                            
         }
 
         // PUT: api/Authors/5

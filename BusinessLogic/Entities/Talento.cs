@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace BusinessLogic.Entities;
 
-public class Skill
+public partial class Talento
 {
     public Guid Id { get; set; }
 
     public string Name { get; set; } = null!;
-    
-    public string Area { get; set; } = null!;
+
+    public Guid IdCategoria { get; set; }
+
+    public virtual ICollection<Categoria> Categorias { get; set; } = new List<Categoria>();
 }
