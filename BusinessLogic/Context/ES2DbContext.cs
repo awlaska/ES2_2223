@@ -18,7 +18,9 @@ public partial class ES2DbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<Experience> Experiencias { get; set; }
+    public virtual DbSet<Experience> Experiences { get; set; }
+    
+    public virtual DbSet<Company> Companies { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -49,6 +51,18 @@ public partial class ES2DbContext : DbContext
                 .HasColumnName("email");
         });
 
+        modelBuilder.Entity<Company>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("id");
+
+            entity.ToTable("company");
+
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("uuid_generate_v4()")
+                .HasColumnName("id");
+            entity.Property(e => e.Name).HasColumnName("name");
+        });
+        
         modelBuilder.Entity<Experience>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("id");
@@ -59,14 +73,9 @@ public partial class ES2DbContext : DbContext
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
             entity.Property(e => e.Title).HasColumnName("title");
+            entity.Property(e => e.IdCompany).HasColumnName("id_company");
             entity.Property(e => e.AnoIni).HasColumnName("ano_ini");
-            entity.Property(e => e.AnoFim)
-                .HasMaxLength(20)
-                .HasColumnName("ano_fim");
-            entity.Property(e => e.Company)
-                .HasMaxLength(255)
-                .HasColumnName("company");
-            
+            entity.Property(e => e.AnoFim).HasColumnName("ano_fim");
         });
 
         OnModelCreatingPartial(modelBuilder);

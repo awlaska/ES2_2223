@@ -19,7 +19,7 @@
         <None Update="docker\images\pg\Dockerfile">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\001-init.sql">
+        <None Update="docker\images\pg\migrations\000-init.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="docker\images\pg\migrations\003-create-users-table.sql">
@@ -43,7 +43,13 @@
         <None Update="docker\images\pg\migrations\008-create-talento_skill-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="docker\images\pg\migrations\009-seed-data.sql">
+        <None Update="docker\images\pg\migrations\009-create-proposta-table.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\020-seed-data.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="docker\images\pg\migrations\001-create-company-table.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

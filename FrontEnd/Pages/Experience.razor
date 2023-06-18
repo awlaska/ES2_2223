@@ -19,7 +19,7 @@ else
     <ul>
         @foreach (var experience in experiences)
         {
-            <li>@experience.title - @experience.company (@experience.anoIni - @experience.anoFim)</li>
+            <li>@experience.Title - @experience.Companies.First().Name (@experience.AnoIni - @experience.AnoFim)</li>
         }
     </ul>
 }
@@ -41,10 +41,22 @@ else
 
     public partial class ExperienceItem
     {
-        public string id { get; set; }
-        public string title { get; set; }
-        public string company { get; set; }
-        public int anoFim { get; set; }
-        public int anoIni { get; set; }
+        public Guid Id { get; set; }
+
+        public string Title { get; set; } = null!;
+
+        public int AnoIni { get; set; }
+
+        public int AnoFim { get; set; }
+
+        public virtual ICollection<Company> Companies { get; set; } = new List<Company>();
     }
+    
+    public partial class Company
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; } = null!;
+    }
+    
 }

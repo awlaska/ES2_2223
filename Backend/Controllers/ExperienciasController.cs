@@ -23,35 +23,42 @@ namespace Backend.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<dynamic>>> GetExperiencias()
+        public async Task<ActionResult<IEnumerable<dynamic>>> GetExperiences()
         {
-            if (_context.Experiencias == null)
+            if (_context.Experiences == null)
             {
                 return NotFound();
             }
 
-            return await _context
-                .Experiencias.Select(b => new
+            return await _context.Experiences
+                .Select(b => new
                 {
                     b.Id,
                     b.Title,
-                    b.Company,
                     b.AnoIni,
-                    b.AnoFim
+                    b.AnoFim,
+                    Companies = _context.Companies
+                        .Where(c => c.Id == b.IdCompany)
+                        .Select(c => new
+                        {
+                            c.Id,
+                            c.Name
+                        }).ToList()
                 })
                 .ToListAsync();
+
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Experience>> GetExperiencia(Guid id)
+        public async Task<ActionResult<Experience>> GetExperience(Guid id)
         {
-            if (_context.Experiencias == null)
+            if (_context.Experiences == null)
             {
                 return NotFound();
             }
 
-            var experiencia = await _context.Experiencias.FindAsync(id);
+            var experiencia = await _context.Experiences.FindAsync(id);
 
             if (experiencia == null)
             {
@@ -97,33 +104,33 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Experience>> PostBook(Experience experience)
         {
-            if (_context.Experiencias == null)
+            if (_context.Experiences == null)
             {
                 return Problem("Entity set 'ES2DbContext.Experiencias'  is null.");
             }
 
-            _context.Experiencias.Add(experience);
+            _context.Experiences.Add(experience);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetExperiencia", new { id = experience.Id }, experience);
+            return CreatedAtAction("GetExperience", new { id = experience.Id }, experience);
         }
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteExperiencia(Guid id)
+        public async Task<IActionResult> DeleteExperience(Guid id)
         {
-            if (_context.Experiencias == null)
+            if (_context.Experiences == null)
             {
                 return NotFound();
             }
 
-            var experiencia = await _context.Experiencias.FindAsync(id);
+            var experiencia = await _context.Experiences.FindAsync(id);
             if (experiencia == null)
             {
                 return NotFound();
             }
 
-            _context.Experiencias.Remove(experiencia);
+            _context.Experiences.Remove(experiencia);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -131,7 +138,7 @@ namespace Backend.Controllers
 
         private bool ExperienciaExists(Guid id)
         {
-            return (_context.Experiencias?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Experiences?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

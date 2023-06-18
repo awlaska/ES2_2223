@@ -40,11 +40,15 @@ namespace Backend.Controllers
                     Experiencia = a.Experiences.Select(b => new
                     {
                         b.Id,
-                        b.Company,
                         b.Title,
                         b.AnoIni,
-                        b.AnoFim
-                    })
+                        b.AnoFim,
+                        Company = b.Companies.Select(c => new
+                        {
+                            c.Id,
+                            c.Name
+                        })
+                            })
                 }).ToListAsync();
         }
 
