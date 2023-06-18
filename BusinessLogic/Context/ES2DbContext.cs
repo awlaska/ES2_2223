@@ -58,12 +58,12 @@ public partial class ES2DbContext : DbContext
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.titulo).HasColumnName("Titulo");
-            entity.Property(e => e.ano_ini).HasColumnName("ano_ini");
-            entity.Property(e => e.ano_fim)
+            entity.Property(e => e.Titulo).HasColumnName("Titulo");
+            entity.Property(e => e.AnoIni).HasColumnName("ano_ini");
+            entity.Property(e => e.AnoFim)
                 .HasMaxLength(20)
                 .HasColumnName("status");
-            entity.Property(e => e.empresa)
+            entity.Property(e => e.Empresa)
                 .HasMaxLength(255)
                 .HasColumnName("Empresa");
             

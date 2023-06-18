@@ -34,17 +34,10 @@ namespace Backend.Controllers
                 .Experiencias.Select(b => new
                 {
                     b.Id,
-                    b.titulo,
-                    b.empresa,
-                    b.ano_ini,
-                    User = new
-                    {
-                        b.User.Id,
-                        b.User.name,
-                        b.User.email,
-                        b.User.pais,
-                        b.User.pr_hora
-                    }
+                    titulo = b.Titulo,
+                    empresa = b.Empresa,
+                    ano_ini = b.AnoIni,
+                    ano_fim = b.AnoFim
                 })
                 .ToListAsync();
         }

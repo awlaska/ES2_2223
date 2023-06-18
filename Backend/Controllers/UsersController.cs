@@ -40,10 +40,10 @@ namespace Backend.Controllers
                     Experiencia = a.Experiencias.Select(b => new
                     {
                         b.Id,
-                        b.empresa,
-                        b.titulo,
-                        b.ano_ini,
-                        b.ano_fim
+                        empresa = b.Empresa,
+                        titulo = b.Titulo,
+                        ano_ini = b.AnoIni,
+                        ano_fim = b.AnoFim
                     })
                 }).ToListAsync();
         }
