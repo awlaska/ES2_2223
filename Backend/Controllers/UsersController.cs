@@ -75,53 +75,21 @@ namespace Backend.Controllers
                     a.Name,
                     a.Email,
                     a.Country,
-                    Experiences = _context.Experiences
-                        .Where(e => e.Id == a.IdExperience)
-                        .Select(b => new
-                        {
-                            b.Id,
-                            b.Title,
-                            b.AnoIni,
-                            b.AnoFim,
-                            Companies = _context.Companies
-                                .Where(d => d.Id == b.IdCompany)
-                                .Select(d => new
-                                {
-                                    d.Id,
-                                    d.Name
-                                }).ToList(),
-                        }).ToList(),
                     User_Skill = _context.UserSkills
                         .Where(c => c.IdUser == a.Id)
                         .Select(c => new
                         {
+                            c.Id,
                             c.AnoXp,
+                            c.IdSkill,
+                            c.IdUser,
                             Skill = _context.Skills
                                 .Where(u => u.Id == c.IdSkill)
                                 .Select(u => new
                                 {
                                     u.Id,
                                     u.Name,
-                                    u.Area,
-                                    Talento_Skill = _context.TalentoSkills
-                                        .Where(t => t.IdSkill == u.Id)
-                                        .Select(t => new
-                                        {
-                                            t.IdTalento,
-                                            t.IdSkill,
-                                            Talento = _context.Talentos
-                                                .Where(q => q.Id == t.IdTalento)
-                                                .Select(q => new
-                                                {
-                                                    q.Name,
-                                                    Categoria = _context.Categorias
-                                                        .Where(v => v.Id == q.IdCategoria)
-                                                        .Select(v => new
-                                                        {
-                                                            v.Name
-                                                        }).ToList()
-                                                }).ToList()
-                                        }).ToList()
+                                    u.Area
                                 }).ToList()
                         }).ToList()
                 }).ToListAsync();

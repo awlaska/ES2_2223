@@ -106,7 +106,9 @@ namespace BusinessLogic.Context
             {
                 entity.ToTable("user_skill");
 
-                entity.HasKey(e => e.Id).HasName("id");
+                entity.Property(e => e.Id)
+                    .HasDefaultValueSql("uuid_generate_v4()")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.AnoXp).HasColumnName("anos_xp");
                 entity.Property(e => e.IdSkill).HasColumnName("id_skill");
@@ -117,7 +119,9 @@ namespace BusinessLogic.Context
             {
                 entity.ToTable("talento_skill");
 
-                entity.HasKey(e => e.Id).HasName("id");
+                entity.Property(e => e.Id)
+                    .HasDefaultValueSql("uuid_generate_v4()")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.IdSkill).HasColumnName("id_skill");
                 entity.Property(e => e.IdTalento).HasColumnName("id_talento");

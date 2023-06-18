@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessLogic.Context;
 using BusinessLogic.Entities;
 
+
 namespace Backend.Controllers
 {
     [Route("api/[controller]")]
@@ -94,18 +95,32 @@ namespace Backend.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Skill>> PostBook(Skill skill)
+        public async Task<ActionResult<Skill>> PostSkill(Skill skill)
         {
-            if (_context.Skills == null)
+            if (_context.Users == null)
             {
-                return Problem("Entity set 'ES2DbContext.skill'  is null.");
+                return Problem("Entity set 'ES2DbContext.Users' is null.");
             }
 
-            _context.Skills.Add(skill);
+            // Log the properties of the "skill" object
+            Console.WriteLine($"Skill Name: {skill.Name}");
+            Console.WriteLine($"Skill Area: {skill.Area}");
+
+            // Remove the reference to "Talento_SkillId" from the INSERT statement
+            var skillWithoutTalento = new Skill
+            {
+                Area = skill.Area,
+                Name = skill.Name
+            };
+
+            _context.Skills.Add(skillWithoutTalento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSkill", new { id = skill.Id }, skill);
+            return CreatedAtAction("GetSkill", new { id = skillWithoutTalento.Id }, skillWithoutTalento);
         }
+
+
+
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
