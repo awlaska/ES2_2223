@@ -59,21 +59,39 @@ namespace Backend.Controllers
 
         // GET: api/Authors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
+        public async Task<ActionResult<IEnumerable<dynamic>>> GetUser(Guid id)
         {
             if (_context.Users == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return await _context.Users
+                .Where(a => a.Id == id)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.PrHora,
+                    a.Name,
+                    a.Email,
+                    a.Country,
+                    Experiences = _context.Experiences
+                        .Where(e => e.Id == a.IdExperience)
+                        .Select(b => new
+                        {
+                            b.Id,
+                            b.Title,
+                            b.AnoIni,
+                            b.AnoFim,
+                            Companies = _context.Companies
+                                .Where(c => c.Id == b.IdCompany)
+                                .Select(c => new
+                                {
+                                    c.Id,
+                                    c.Name
+                                }).ToList()
+                        }).ToList()
+                }).ToListAsync();
         }
 
         // PUT: api/Authors/5
